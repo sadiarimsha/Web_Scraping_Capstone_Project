@@ -72,7 +72,7 @@ df_clean= df.drop_duplicates()
 print(df_clean)
 
 # Dropping empty rows
-df_clean = df_clean[(df_clean['Title'] != 'N/A') & (df_clean['Temperature'] != 'N/A')]
+df_clean = df_clean[(df_clean['Title'] != 'N/A') & (df_clean['Temperature'] != 'N/A')].copy()
 
 # Changing temperature into float
 df_clean['Temperature']= df_clean['Temperature'].str.extract(r'(-?\d+)').astype(float)
