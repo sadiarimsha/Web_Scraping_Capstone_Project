@@ -53,6 +53,32 @@ for w in weather:
 
 print(results)
 
+for result in results:
+    link = result['Link']
+
+    if link == 'N/A':
+        continue
+
+    driver.get(link)
+
+    try:
+        snapshot = driver.find_element(By.XPATH, '//div[@id="qlook"]/p[2]')
+        snapshot_text = snapshot.text
+        feels_like = 'N/A'
+        rows = snapshot_text.split('\n')
+
+        for row in rows:
+            if row.startswith('Feels Like:'):
+                feels_like = row.replace('Feels Like:', '').strip()
+                break
+
+        result['Feels Like'] = feels_like
+
+    except NoSuchElementException:
+        result['Feels Like'] = 'N/A'
+
+print(results)
+
 # Loading raw data into a Pandas DataFrame
 df = pd.DataFrame(results)
 print(df)
@@ -74,12 +100,15 @@ print(df_clean)
 # Dropping empty rows
 df_clean = df_clean[(df_clean['Title'] != 'N/A') & (df_clean['Temperature'] != 'N/A')].copy()
 
-# Changing temperature into float
+# Changing temperature and Feels like into float
 df_clean['Temperature']= df_clean['Temperature'].str.extract(r'(-?\d+)').astype(float)
+df_clean['Feels Like']= df_clean['Feels Like'].str.extract(r'(-?\d+)').astype(float)
 
 # Removing whitespace from title and description
 df_clean['Title'] = df_clean['Title'].str.strip()
 df_clean['Description'] = df_clean['Description'].str.strip()
+df_clean['Description']= df_clean['Description'].str.rstrip('.')
+
 
 # Shows after stages of cleaning
 print('After cleaning:')
