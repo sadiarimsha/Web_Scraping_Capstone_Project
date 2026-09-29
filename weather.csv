@@ -1,5 +1,5 @@
-Title,Temperature,Description,Link
-Wheaton,81 °F,Scattered clouds.,https://www.timeanddate.com/weather/usa/wheaton
-New York,77 °F,Sunny.,https://www.timeanddate.com/weather/usa/new-york
-London,77 °F,Scattered clouds.,https://www.timeanddate.com/weather/uk/london
-Tokyo,84 °F,Warm.,https://www.timeanddate.com/weather/japan/tokyo
+Title,Temperature,Description,Link,Feels Like
+Wheaton,87 °F,Sunny.,https://www.timeanddate.com/weather/usa/wheaton,98 °F
+New York,79 °F,Clear.,https://www.timeanddate.com/weather/usa/new-york,80 °F
+London,57 °F,Clear.,https://www.timeanddate.com/weather/uk/london,55 °F
+Tokyo,70 °F,Broken clouds.,https://www.timeanddate.com/weather/japan/tokyo,70 °F
